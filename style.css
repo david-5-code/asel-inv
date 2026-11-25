@@ -1,0 +1,802 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #080f1e;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ENVELOPE INTRO */
+
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #243858, #080f1e 75%);
+    transition: opacity 1s, visibility 1s;
+    padding: 20px;
+}
+
+.intro.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 7vw, 43px);
+    color: #f4d58d;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.intro p {
+    color: #d6dcec;
+    font-size: 14px;
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+.envelope:hover {
+    transform: translateY(-8px);
+}
+
+/* ENVELOPE WRAPPER */
+
+.envelope-wrapper {
+    width: min(310px, 85vw);
+    height: 195px;
+    perspective: 1000px;
+    margin: 0 auto;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #d9b978;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 20px 50px #0008;
+}
+
+/* ENVELOPE BACK */
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #d9b978;
+    z-index: 1;
+}
+
+/* INVITATION CARD */
+
+.invitation-card {
+    position: absolute;
+    width: 85%;
+    height: 170px;
+    left: 7.5%;
+    bottom: 10px;
+
+    background: #fff9ec;
+    color: #172b4d;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    z-index: 2;
+
+    transition: transform 1s ease;
+}
+
+.invitation-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.invitation-card p {
+    font-size: 12px;
+}
+
+/* ENVELOPE FRONT */
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    background: #c7a461;
+
+    clip-path: polygon(
+        0 0,
+        50% 58%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index: 4;
+}
+
+/* ENVELOPE FLAP */
+
+.envelope-flap {
+    position: absolute;
+    inset: 0;
+    background: #f1d69e;
+
+    clip-path: polygon(0 0, 100% 0, 50% 60%);
+
+    transform-origin: top;
+    transition: transform .9s ease;
+    z-index: 7;
+}
+
+/* RIBBON */
+
+.ribbon {
+    position: absolute;
+    background: #172b4d;
+    z-index: 8;
+    transition: opacity .5s ease;
+}
+
+.ribbon-horizontal {
+    width: 100%;
+    height: 23px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ribbon-vertical {
+    width: 28px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* REALISTIC SATIN RIBBON BOW */
+
+.bow {
+    position: absolute;
+    width: 130px;
+    height: 85px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+/* RIBBON LOOPS */
+.bow-loop {
+    position: absolute;
+    width: 62px;
+    height: 43px;
+    background: linear-gradient(
+        145deg,
+        #496fa5 0%,
+        #203d68 35%,
+        #102747 65%,
+        #3e6392 100%
+    );
+    border: 2px solid #d9b978;
+    box-shadow:
+        inset 3px 3px 7px rgba(255,255,255,0.3),
+        inset -4px -4px 8px rgba(0,0,0,0.35),
+        0 3px 5px rgba(0,0,0,0.25);
+}
+
+/* LEFT LOOP */
+.bow-loop.left {
+    left: 2px;
+    top: 8px;
+    border-radius: 80% 20% 65% 35%;
+    transform: rotate(25deg);
+}
+
+/* RIGHT LOOP */
+.bow-loop.right {
+    right: 2px;
+    top: 8px;
+    border-radius: 20% 80% 35% 65%;
+    transform: rotate(-25deg);
+}
+
+/* CENTER KNOT */
+.bow-knot {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(
+        circle at 30% 25%,
+        #fff0b8,
+        #e9c778 40%,
+        #b88b3d 100%
+    );
+    border-radius: 50%;
+    left: 50%;
+    top: 15px;
+    transform: translateX(-50%);
+    z-index: 12;
+    border: 2px solid #f5d99a;
+    box-shadow:
+        inset 2px 2px 4px rgba(255,255,255,0.6),
+        2px 3px 5px rgba(0,0,0,0.35);
+}
+
+/* RIBBON TAILS */
+.bow::before,
+.bow::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 48px;
+    top: 38px;
+    background: linear-gradient(
+        90deg,
+        #102747,
+        #355987,
+        #203d68,
+        #102747
+    );
+    border: 2px solid #d9b978;
+    z-index: -1;
+    box-shadow: 2px 4px 5px rgba(0,0,0,0.25);
+}
+
+.bow::before {
+    left: 35px;
+    transform: rotate(18deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+}
+
+.bow::after {
+    right: 35px;
+    transform: rotate(-18deg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
+}
+
+/* RIBBON UNTIE ANIMATION */
+
+.envelope-wrapper.untie .bow {
+    animation: bowUntie .9s ease forwards;
+}
+
+.envelope-wrapper.untie .bow-loop.left {
+    animation: leftUntie .8s ease forwards;
+}
+
+.envelope-wrapper.untie .bow-loop.right {
+    animation: rightUntie .8s ease forwards;
+}
+
+.envelope-wrapper.untie .ribbon {
+    opacity: 0;
+    transition-delay: .7s;
+}
+
+@keyframes bowUntie {
+    0% {
+        transform: translate(-50%, -50%) rotate(0) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(25deg) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(100deg) scale(.2);
+        opacity: 0;
+    }
+}
+
+@keyframes leftUntie {
+    to {
+        transform: translate(-35px, -30px) rotate(-100deg);
+        opacity: 0;
+    }
+}
+
+@keyframes rightUntie {
+    to {
+        transform: translate(35px, -30px) rotate(100deg);
+        opacity: 0;
+    }
+}
+
+/* OPEN ENVELOPE */
+
+.envelope-wrapper.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+
+/* TAP TEXT */
+
+.open-text {
+    margin-top: 35px;
+    color: #f4d58d;
+    font-size: 13px;
+    letter-spacing: 3px;
+    animation: pulse 1.5s infinite;
+    cursor: pointer;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: .4;
+    }
+}
+
+@media(max-width: 480px) {
+    .envelope-wrapper {
+        width: 280px;
+        height: 180px;
+    }
+
+    .invitation-card {
+        height: 155px;
+    }
+}
+
+
+.open-text {
+    margin-top: 30px;
+    color: #f4d58d;
+    font-size: 13px;
+    letter-spacing: 3px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    50% { opacity: .45; }
+}
+
+/* MAIN INVITATION */
+
+#invitation {
+    display: none;
+    animation: appear 1.2s ease;
+}
+
+#invitation.show {
+    display: block;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 20px;
+
+    background:
+        linear-gradient(#080f1ecc, #080f1eea),
+        url('images/celebrant.jpg') center/cover;
+
+    position: relative;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.small-title {
+    color: #e8c77e;
+    letter-spacing: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 11vw, 85px);
+    line-height: 1.1;
+    color: #f3d99e;
+    margin: 25px 0;
+}
+
+.hero h2 {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.hero p {
+    color: #d3d9e5;
+    line-height: 1.8;
+    margin-top: 20px;
+}
+
+.gold-line {
+    width: 80px;
+    height: 2px;
+    background: #d9b978;
+    margin: 25px auto;
+}
+
+.scroll {
+    margin-top: 55px;
+    color: #e8c77e;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+/* GENERAL SECTIONS */
+
+section:not(.hero) {
+    padding: 85px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 950px;
+    margin: auto;
+    text-align: center;
+}
+
+.section-label {
+    color: #d9b978;
+    letter-spacing: 4px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    color: #f3d99e;
+    font-size: clamp(30px, 6vw, 43px);
+    margin: 15px 0 25px;
+}
+
+.description {
+    color: #c5ccda;
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+/* CELEBRANT */
+
+.celebrant-photo {
+    margin: 35px auto 0;
+    width: min(300px, 85%);
+    height: 370px;
+    object-fit: cover;
+    border-radius: 150px 150px 15px 15px;
+    border: 4px solid #c7a461;
+}
+
+.celebrant-name {
+    margin-top: 25px;
+}
+
+/* COUNTDOWN */
+
+.countdown-section,
+.gallery-section,
+.rsvp-section {
+    background: #101b30;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.time-box {
+    background: #1b2b46;
+    border: 1px solid #b99a5c;
+    width: 105px;
+    padding: 22px 10px;
+    border-radius: 8px;
+}
+
+.time-box h3 {
+    font-size: 34px;
+    color: #f3d99e;
+}
+
+.time-box span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #d3d9e5;
+}
+
+/* EVENT DETAILS */
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 35px;
+}
+
+.detail-card {
+    background: #14223a;
+    border: 1px solid #33415a;
+    border-radius: 12px;
+    padding: 30px 15px;
+}
+
+.detail-card .icon {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.detail-card h3 {
+    color: #e8c77e;
+    margin-bottom: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.detail-card p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #d1d7e2;
+}
+
+/* GALLERY */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #b99a5c;
+    transition: transform .3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.04);
+}
+
+/* 21 BILLS */
+
+.bills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.bill-person {
+    padding: 17px 10px;
+    background: #182943;
+    border: 1px solid #394965;
+    border-radius: 9px;
+}
+
+.bill-person span {
+    display: block;
+    font-size: 11px;
+    color: #d9b978;
+    margin-bottom: 7px;
+    letter-spacing: 1px;
+}
+
+.bill-person h4 {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* 21 CAKES */
+.cakes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.cake-person {
+    padding: 17px 10px;
+    background: #182943;
+    border: 1px solid #394965;
+    border-radius: 9px;
+}
+
+.cake-person span {
+    display: block;
+    font-size: 11px;
+    color: #d9b978;
+    margin-bottom: 7px;
+    letter-spacing: 1px;
+}
+
+.cake-person h4 {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* 21 GIFTS */
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.gift-person {
+    padding: 17px 10px;
+    background: #182943;
+    border: 1px solid #394965;
+    border-radius: 9px;
+}
+
+.gift-person span {
+    display: block;
+    font-size: 11px;
+    color: #d9b978;
+    margin-bottom: 7px;
+    letter-spacing: 1px;
+}
+
+.gift-person h4 {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* 21 WINES */
+.wines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.wine-person {
+    padding: 17px 10px;
+    background: #182943;
+    border: 1px solid #394965;
+    border-radius: 9px;
+}
+
+.wine-person span {
+    display: block;
+    font-size: 11px;
+    color: #d9b978;
+    margin-bottom: 7px;
+    letter-spacing: 1px;
+}
+
+.wine-person h4 {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* 9 SPECIAL GIFTS */
+.specgifts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.specgift-person {
+    padding: 17px 10px;
+    background: #182943;
+    border: 1px solid #394965;
+    border-radius: 9px;
+}
+
+.specgift-person span {
+    display: block;
+    font-size: 11px;
+    color: #d9b978;
+    margin-bottom: 7px;
+    letter-spacing: 1px;
+}
+
+.specgift-person h4 {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #d9b978;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+}
+
+footer p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    margin-top: 12px;
+    color: #aeb8c9;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media(max-width: 600px) {
+
+    .hero {
+        min-height: 90vh;
+    }
+
+    .hero h2 {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .gallery img {
+        height: 170px;
+    }
+
+    .bills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .time-box {
+        width: 75px;
+        padding: 15px 5px;
+    }
+
+    .time-box h3 {
+        font-size: 25px;
+    }
+
+    section:not(.hero) {
+        padding: 65px 18px;
+    }
+}

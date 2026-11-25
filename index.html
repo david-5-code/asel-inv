@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Invitation</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ENVELOPE INTRO -->
+  
+<div class="intro" id="intro">
+    <h2>You are Invited!</h2>
+    <p>Come and celebrate Dan Russelle's special day.</p>
+
+    <div class="envelope-wrapper" id="envelopeWrapper">
+
+        <div class="envelope" onclick="openInvitation()">
+
+            <div class="envelope-back"></div>
+
+            <div class="invitation-card">
+                <h3>You're Invited!</h3>
+                <p>December 29, 2026</p>
+            </div>
+
+            <div class="envelope-flap"></div>
+            <div class="envelope-front"></div>
+
+            <div class="ribbon ribbon-horizontal"></div>
+            <div class="ribbon ribbon-vertical"></div>
+
+            <div class="bow" id="bow">
+                <div class="bow-loop left"></div>
+                <div class="bow-loop right"></div>
+                <div class="bow-knot"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="open-text" id="openText">TAP TO OPEN</div>
+</div>
+
+
+    <!-- MAIN INVITATION -->
+    <main id="invitation">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="small-title">You Are Invited To</div>
+
+                <h1>Dan Russelle's<br>Celebration</h1>
+
+                <div class="gold-line"></div>
+
+                <h2>CELEBRATING MY 21ST BIRTHDAY</h2>
+
+                <p>
+                    Together with my family, I would love
+                    to invite you to celebrate this special
+                    milestone with me.
+                </p>
+
+                <div class="scroll">DECEMBER 29, 2026</div>
+            </div>
+        </section>
+
+        <!-- CELEBRANT -->
+        <section>
+            <div class="container">
+                <div class="section-label">The Birthday Celebrant</div>
+
+                <h2 class="section-title">Meet the Birthday Boy</h2>
+
+                <p class="description">
+                    A new chapter, another year of memories,
+                    and a celebration made more special
+                    with the people who matter most.
+                </p>
+
+                <img src="images/celebrant.jpg"
+                     alt="Birthday Celebrant"
+                     class="celebrant-photo">
+
+                <h2 class="section-title celebrant-name">
+                    Dan Russelle Largo Baira
+                </h2>
+            </div>
+        </section>
+
+        <!-- COUNTDOWN -->
+        <section class="countdown-section">
+            <div class="container">
+                <div class="section-label">Save the Date</div>
+
+                <h2 class="section-title">The Celebration Begins In</h2>
+
+                <div class="countdown">
+                    <div class="time-box">
+                        <h3 id="days">00</h3>
+                        <span>DAYS</span>
+                    </div>
+
+                    <div class="time-box">
+                        <h3 id="hours">00</h3>
+                        <span>HOURS</span>
+                    </div>
+
+                    <div class="time-box">
+                        <h3 id="minutes">00</h3>
+                        <span>MINUTES</span>
+                    </div>
+
+                    <div class="time-box">
+                        <h3 id="seconds">00</h3>
+                        <span>SECONDS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT DETAILS -->
+        <section>
+            <div class="container">
+                <div class="section-label">Join Us</div>
+
+                <h2 class="section-title">Birthday Details</h2>
+
+                <p class="description">
+                    It wouldn't be complete without you!
+                    Here are the details of the celebration.
+                </p>
+
+                <div class="details-grid">
+
+                    <div class="detail-card">
+                        <div class="icon">📅</div>
+                        <h3>Date</h3>
+                        <p>December 29, 2026<br>Tuesday</p>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="icon">🕒</div>
+                        <h3>Time</h3>
+                        <p>1:00 PM onwards</p>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="icon">📍</div>
+                        <h3>Venue</h3>
+                        <p>Baira's Residence<br>Brgy. Paiisa Tiaong Quezon</p>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="icon">👔</div>
+                        <h3>Dress Code</h3>
+                        <p>Smart Casual<br></p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PHOTO GALLERY -->
+        <section class="gallery-section">
+            <div class="container">
+                <div class="section-label">Captured Moments</div>
+
+                <h2 class="section-title">Photo Gallery</h2>
+
+                <p class="description">
+                    A few memories and moments worth sharing.
+                </p>
+
+                <div class="gallery">
+                    <img src="images/photo1.jpg" alt="Photo 1">
+                    <img src="images/photo2.jpg" alt="Photo 2">
+                    <img src="images/photo3.jpg" alt="Photo 3">
+                    <img src="images/photo4.jpg" alt="Photo 4">
+                    <img src="images/photo5.jpg" alt="Photo 5">
+                    <img src="images/photo6.jpg" alt="Photo 6">
+                </div>
+            </div>
+        </section>
+
+        <!-- 21 BILLS -->
+        <section>
+            <div class="container">
+                <div class="section-label">A Special Tradition</div>
+
+                <h2 class="section-title">21 Bills</h2>
+
+                <div class="bills-grid" id="billsList"></div>
+            </div>
+        </section>
+
+         <!-- 21 CAKES -->
+        <section>
+            <div class="container">
+
+                <h2 class="section-title">21 CAKES</h2>
+
+                <div class="cakes-grid" id="cakesList"></div>
+            </div>
+        </section>
+
+           <!-- 21 GIFTS -->
+        <section>
+            <div class="container">
+
+                <h2 class="section-title">21 GIFTS</h2>
+
+                <div class="gifts-grid" id="giftsList"></div>
+            </div>
+        </section>
+
+           <!-- 21 WINES -->
+        <section>
+            <div class="container">
+
+                <h2 class="section-title">21 WINES</h2>
+
+                <div class="wines-grid" id="winesList"></div>
+            </div>
+        </section>
+
+           <!-- 9 SPECIAL GIFTS -->
+        <section>
+            <div class="container">
+
+                <h2 class="section-title">9 SPECIAL GIFTS AFFICIONADO</h2>
+
+                <div class="specgifts-grid" id="specgiftsList"></div>
+            </div>
+        </section>
+
+
+
+        <!-- FOOTER -->
+        <footer>
+            See You There!
+            <p>With love, Dan Russelle</p>
+            <p>December 29, 2026</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
